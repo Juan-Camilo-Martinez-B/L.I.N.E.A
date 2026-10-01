@@ -3,7 +3,7 @@ requires = ["setuptools>=61"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "arepa"
+name = "linea"
 version = "1.0.0"
 description = "Laboratorio de Inferencia Numérica y Estimación Aplicada"
 readme = "README.md"

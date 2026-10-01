@@ -18,7 +18,7 @@ Con Docker no instalas Postgres ni Python: Compose levanta la base y la API junt
 ## Primera predicción en cinco minutos (Docker)
 
 1. Clona o descarga el repositorio y entra en la carpeta del proyecto.
-2. Copia la plantilla de variables: `cp .env.example .env` (la contraseña de ejemplo es `arepa_dev`).
+2. Copia la plantilla de variables: `cp .env.example .env` (la contraseña de ejemplo es `linea_dev`).
 3. Ejecuta: `docker compose up --build` y espera a que aparezca que Uvicorn está en el puerto 8000.
 4. Abre en el navegador: **http://localhost:8000/docs**
 5. Expande **POST /v1/predict/dollar** → **Try it out** → deja el JSON de ejemplo o usa:
@@ -52,7 +52,7 @@ source .venv/bin/activate          # Windows: .venv\Scripts\activate
 pip install -r requirements-dev.txt
 
 cp .env.example .env
-# Opcional: AREPA_DATABASE_URL=postgresql+psycopg://postgres:arepa_dev@localhost:5432/arepa
+# Opcional: LINEA_DATABASE_URL=postgresql+psycopg://postgres:linea_dev@localhost:5432/linea
 # Si no tienes Postgres, puedes omitir la URL: las predicciones funcionan; el historial no.
 
 alembic upgrade head               # solo si configuraste Postgres
@@ -65,7 +65,7 @@ Docs: http://localhost:8000/docs
 
 | Orden | Archivo | Para qué sirve |
 |---|---|---|
-| 1 | [Qué es L.I.N.E.A.](01-que-es-arepa.md) | Idea del proyecto y carpetas |
+| 1 | [Qué es L.I.N.E.A.](01-que-es-linea.md) | Idea del proyecto y carpetas |
 | 2 | [Limpieza de datos](02-limpieza-de-datos.md) | Qué se hizo con los CSV |
 | 3 | [Regresión lineal](03-regresion-lineal.md) | Cómo se entrenó y qué significan R², MSE |
 | 4 | [La API](04-la-api.md) | Rutas, errores, respuestas |

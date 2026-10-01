@@ -10,11 +10,11 @@ from pathlib import Path
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(PROJECT_ROOT / "src"))
 
-from arepa.constants import FEATURE_COLUMNS, FIGURES_DIR, MODELS_DIR, TARGET_COLUMNS
-from arepa.data_pipeline import check_multicollinearity, prepare_scenario_frame
-from arepa.modeling import export_model, train_scenario
-from arepa.treatment import save_processed
-from arepa.visualization import plot_correlation_heatmap, save_all_feature_plots
+from linea.constants import FEATURE_COLUMNS, FIGURES_DIR, MODELS_DIR, TARGET_COLUMNS
+from linea.data_pipeline import check_multicollinearity, prepare_scenario_frame
+from linea.modeling import export_model, train_scenario
+from linea.treatment import save_processed
+from linea.visualization import plot_correlation_heatmap, save_all_feature_plots
 
 
 def main() -> None:

@@ -12,8 +12,8 @@ Eso es lo que se espera en un servicio: el modelo es un artefacto. Cambiar los d
 
 ```bash
 source .venv/bin/activate
-pip install -r requirements-dev.txt   # incluye `pip install -e .` para el paquete arepa
-# Opcional: export AREPA_DATABASE_URL=postgresql+psycopg://...
+pip install -r requirements-dev.txt   # incluye `pip install -e .` para el paquete linea
+# Opcional: export LINEA_DATABASE_URL=postgresql+psycopg://...
 alembic upgrade head   # solo si hay Postgres
 uvicorn backend.app.main:app --reload --port 8000
 ```
@@ -22,7 +22,7 @@ uvicorn backend.app.main:app --reload --port 8000
 - Contrato OpenAPI (JSON): http://localhost:8000/openapi.json  
 - Raíz: http://localhost:8000/ (enlaces útiles)
 
-Variables de entorno usan el prefijo **`AREPA_`** (por ejemplo `AREPA_DATABASE_URL`). Plantilla: `.env.example`.
+Variables de entorno usan el prefijo **`LINEA_`** (por ejemplo `LINEA_DATABASE_URL`). Plantilla: `.env.example`.
 
 ## Rutas
 
@@ -86,13 +86,13 @@ Detalle de los tres estados de `database` (`disabled`, `ok`, `error`): [Glosario
 
 ## CORS (frontend)
 
-La app en `frontend/` (Next.js) llama a la API desde el navegador. Por defecto se aceptan `http://localhost:3000`, `http://127.0.0.1:3000` y, con regex, otros puertos en **localhost y redes privadas** (útil en WSL o probando desde el móvil en la misma Wi‑Fi). Lista fija adicional: `AREPA_CORS_ORIGINS` (JSON en `.env`).
+La app en `frontend/` (Next.js) llama a la API desde el navegador. Por defecto se aceptan `http://localhost:3000`, `http://127.0.0.1:3000` y, con regex, otros puertos en **localhost y redes privadas** (útil en WSL o probando desde el móvil en la misma Wi‑Fi). Lista fija adicional: `LINEA_CORS_ORIGINS` (JSON en `.env`).
 
 ## Qué hace el backend por dentro
 
 - Validar rangos en el cuerpo JSON (Pydantic).
 - Armar la fila con los mismos nombres de columnas del entrenamiento.
-- En energía, convertir la hora con `encode_hour` (`src/arepa/features.py`) antes de predecir.
+- En energía, convertir la hora con `encode_hour` (`src/linea/features.py`) antes de predecir.
 - Opcionalmente insertar en Postgres y exponer historial/analytics.
 
 No hay endpoint de entrenamiento, colas ni Huber en producción (solo OLS lineal).

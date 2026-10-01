@@ -1,6 +1,6 @@
 import os
 
-os.environ["AREPA_DATABASE_URL"] = "sqlite://"
+os.environ["LINEA_DATABASE_URL"] = "sqlite://"
 
 import pytest
 from fastapi.testclient import TestClient

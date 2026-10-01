@@ -6,7 +6,7 @@ from typing import Any
 
 import pandas as pd
 
-from arepa.features import encode_hour
+from linea.features import encode_hour
 from backend.app.schemas import (
     DollarPredictionRequest,
     EnergyPredictionRequest,

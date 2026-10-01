@@ -177,7 +177,7 @@ acción y lo que sube la predicción. El naranja es la recta, la marca y lo que 
 
 **Tintes, no tokens nuevos.** Los fondos suaves salen del mismo token con opacidad
 (`bg-mark/15`, `ring-tertiary/20`, `bg-positive/10`). Las figuras de `report/figures/` usan los mismos valores
-(`src/arepa/visualization.py`). El brillo (text-shadow y box-shadow) no añade colores: usa tertiary y mark.
+(`src/linea/visualization.py`). El brillo (text-shadow y box-shadow) no añade colores: usa tertiary y mark.
 
 - **Primary (#F2FFF8) — Texto:** títulos y cuerpo sobre el fondo oscuro.
 - **On-primary (#03150F):** texto sobre verde o naranja sólidos (botones e insignias).

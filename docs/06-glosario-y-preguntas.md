@@ -28,7 +28,7 @@ Para **usar** la API basta [00-empezar-aqui](00-empezar-aqui.md). Para **entende
 
 ### ¿Tengo que entrenar antes de predecir?
 
-No para probar el proyecto. Los archivos en `models/` ya están listos. Entrenar de nuevo solo hace falta si cambias `data/` o el código en `src/arepa/`:
+No para probar el proyecto. Los archivos en `models/` ya están listos. Entrenar de nuevo solo hace falta si cambias `data/` o el código en `src/linea/`:
 
 ```bash
 python scripts/train_models.py
@@ -40,7 +40,7 @@ No. Solo carga el `.joblib` y multiplica suma (recta). Reentrenar es offline.
 
 ### ¿Puedo usar la API sin PostgreSQL?
 
-Sí. Sin `AREPA_DATABASE_URL` (o sin base accesible):
+Sí. Sin `LINEA_DATABASE_URL` (o sin base accesible):
 
 - **POST /v1/predict/** sigue respondiendo 200.
 - La respuesta incluye `"stored_in_history": false`.

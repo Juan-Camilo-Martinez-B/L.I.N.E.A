@@ -27,7 +27,7 @@ La regresión lineal es el modelo que pide el taller. No se cambia por un modelo
 |---|---|
 | `data/raw/` | Los CSV tal como llegaron |
 | `data/processed/` | Las mismas filas, con nombres en inglés y marcas de anomalía |
-| `src/arepa/` | El código que limpia y entrena |
+| `src/linea/` | El código que limpia y entrena |
 | `models/` | Los tres modelos ya entrenados (`.joblib`) |
 | `backend/` | La API que predice |
 | `frontend/` | Interfaz web (Next.js): formularios, resultados y gráficas |

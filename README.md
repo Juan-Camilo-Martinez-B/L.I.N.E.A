@@ -14,7 +14,7 @@ Regresión lineal en tres dominios: entrenamiento CRISP-DM, artefactos `.joblib`
 ```
 ├── backend/app/       # FastAPI (v1 predict + metadata)
 ├── frontend/          # Next.js 15 (App Router): forms, results, figures
-├── src/arepa/         # ML pipeline (load, clean, train, export)
+├── src/linea/         # ML pipeline (load, clean, train, export)
 ├── notebooks/         # 01–03 analysis per domain
 ├── models/            # Serialized pipelines (.joblib)
 ├── data/raw/          # Dirty CSVs
@@ -41,7 +41,7 @@ Guía desde cero: [docs/00-empezar-aqui.md](docs/00-empezar-aqui.md) · índice 
 
 ```bash
 python3 -m venv .venv && source .venv/bin/activate
-pip install -r requirements-dev.txt   # installs deps + editable `arepa` from src/
+pip install -r requirements-dev.txt   # installs deps + editable `linea` from src/
 
 python scripts/train_models.py        # optional refresh
 alembic upgrade head                  # tables on the Postgres already running
@@ -55,7 +55,7 @@ cp .env.example .env
 docker compose up --build
 ```
 
-If you already run Postgres on `:5432`, start only the API: `docker compose up api --build --no-deps` and point `AREPA_DATABASE_URL` at `host.docker.internal` (see `.env.example` and [docs/05-postgres-y-docker.md](docs/05-postgres-y-docker.md)).
+If you already run Postgres on `:5432`, start only the API: `docker compose up api --build --no-deps` and point `LINEA_DATABASE_URL` at `host.docker.internal` (see `.env.example` and [docs/05-postgres-y-docker.md](docs/05-postgres-y-docker.md)).
 
 API docs: http://localhost:8000/docs
 
@@ -99,8 +99,8 @@ GitHub Actions runs ruff and pytest. Docker uses the slimmer `requirements.txt`.
 ## Docker
 
 ```bash
-docker build -t arepa-api -f backend/Dockerfile .
-docker run --rm -p 8000:8000 arepa-api
+docker build -t linea-api -f backend/Dockerfile .
+docker run --rm -p 8000:8000 linea-api
 ```
 
 ## License

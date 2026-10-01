@@ -16,7 +16,7 @@ Supón que tienes muchas filas históricas: entradas `x` (día, edad, temperatur
 - **`βⱼ`**: cuánto sube o baja **ŷ** si **`xⱼ` sube una unidad** y el resto de variables no cambia (en las unidades originales, después de desescalar; ver más abajo).  
 - **`ŷ`**: predicción (y con sombrero = estimación, no el valor real).
 
-En L.I.N.E.A. hay **tres rectas distintas** (dólar, glucosa, energía), cada una con sus columnas definidas en `src/arepa/constants.py`.
+En L.I.N.E.A. hay **tres rectas distintas** (dólar, glucosa, energía), cada una con sus columnas definidas en `src/linea/constants.py`.
 
 ## Por qué un modelo lineal en cada escenario
 
@@ -93,7 +93,7 @@ hour_sin = sin(2π · h / 24)
 hour_cos = cos(2π · h / 24)
 ```
 
-Así el modelo ve una **posición en un círculo**, no una línea infinita. Es una transformación fija **antes** de la parte lineal; la API usa la misma función `encode_hour` en `src/arepa/features.py` que el entrenamiento.
+Así el modelo ve una **posición en un círculo**, no una línea infinita. Es una transformación fija **antes** de la parte lineal; la API usa la misma función `encode_hour` en `src/linea/features.py` que el entrenamiento.
 
 ## Cómo se entrena aquí (pasos del repo)
 
@@ -101,7 +101,7 @@ Así el modelo ve una **posición en un círculo**, no una línea infinita. Es u
 python scripts/train_models.py
 ```
 
-Código: `src/arepa/modeling.py`.
+Código: `src/linea/modeling.py`.
 
 1. **Partición 80 % / 20 %** (`train_test_split`, `random_state=42`): el 20 % **no** se usa para calcular `β`; solo para medir error en datos “nuevos” simulados.
 2. **Pipeline**: `StandardScaler` + `LinearRegression` → ajuste OLS sobre el 80 %.
