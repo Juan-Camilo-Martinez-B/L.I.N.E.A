@@ -1,0 +1,41 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "arepa"
+version = "1.0.0"
+description = "Laboratorio de Inferencia Numérica y Estimación Aplicada"
+readme = "README.md"
+requires-python = ">=3.11"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = [".", "src"]
+testpaths = ["tests"]
+
+[tool.pyrefly]
+python-version = "3.12"
+python-interpreter-path = ".venv/bin/python"
+search-path = [".", "src"]
+site-package-path = [".venv/lib/python3.12/site-packages"]
+
+[tool.basedpyright]
+venvPath = "."
+venv = ".venv"
+extraPaths = ["."]
+pythonVersion = "3.12"
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP"]
+ignore = ["E501"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["S101"]
+"scripts/*" = ["E402"]
