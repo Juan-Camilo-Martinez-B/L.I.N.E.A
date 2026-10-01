@@ -207,23 +207,66 @@ export function Predictor({ initialExercise, intro }: { initialExercise: ModelNa
   );
 }
 
-/** Glow behind the hero: an orange disc, a green ring and a dot grid. */
+/** Mountains behind the hero, with a rising analytics line laid over the ridges. */
 function HeroDecor() {
+  const points = [
+    [36, 168],
+    [108, 142],
+    [176, 124],
+    [248, 98],
+    [324, 72],
+    [412, 42],
+  ] as const;
+
   return (
     <svg
       aria-hidden
-      viewBox="0 0 400 220"
+      viewBox="0 0 460 220"
       className="pointer-events-none absolute top-1/2 right-0 -z-10 hidden h-72 w-auto -translate-y-1/2 text-tertiary lg:block"
     >
-      <circle cx="300" cy="96" r="84" fill="var(--color-mark)" opacity="0.28" />
-      <circle cx="300" cy="96" r="84" fill="none" stroke="var(--color-mark)" strokeOpacity="0.85" strokeWidth="1.6" />
-      <circle cx="238" cy="130" r="70" fill="none" stroke="currentColor" strokeOpacity="0.55" strokeWidth="1.4" />
-      <g fill="currentColor" opacity="0.28">
-        {Array.from({ length: 24 }, (_, dot) => (
-          <circle key={dot} cx={48 + (dot % 6) * 14} cy={40 + Math.floor(dot / 6) * 14} r="1.6" />
-        ))}
+      <g stroke="currentColor" strokeOpacity="0.16" strokeWidth="1">
+        <path d="M20 48H444M20 96H444M20 144H444" />
+        <path d="M20 188V32" />
       </g>
-      <path d="M372 170v14m-7-7h14" stroke="var(--color-mark)" strokeWidth="1.6" strokeLinecap="round" />
+      <path d="M20 188H444" stroke="var(--color-secondary)" strokeOpacity="0.45" strokeWidth="1.25" />
+
+      <path
+        d="M20 162 L78 118 L128 146 L188 86 L248 132 L312 70 L372 112 L444 84 V188 H20Z"
+        fill="currentColor"
+        opacity="0.14"
+      />
+      <path
+        d="M20 178 L72 146 L124 164 L186 118 L246 154 L314 102 L378 138 L444 116 V188 H20Z"
+        fill="var(--color-mark)"
+        opacity="0.2"
+      />
+      <path
+        d="M20 178 L72 146 L124 164 L186 118 L246 154 L314 102 L378 138 L444 116"
+        fill="none"
+        stroke="var(--color-mark)"
+        strokeOpacity="0.75"
+        strokeWidth="1.5"
+        strokeLinejoin="round"
+        strokeLinecap="round"
+      />
+
+      <path
+        d={points.map(([x, y], index) => `${index === 0 ? "M" : "L"}${x} ${y}`).join(" ")}
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2.6"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      {points.map(([x, y], index) => (
+        <circle
+          key={`${x}-${y}`}
+          cx={x}
+          cy={y}
+          r={index === points.length - 1 ? 5 : 3.2}
+          fill={index === points.length - 1 ? "var(--color-mark)" : "currentColor"}
+        />
+      ))}
     </svg>
   );
 }
