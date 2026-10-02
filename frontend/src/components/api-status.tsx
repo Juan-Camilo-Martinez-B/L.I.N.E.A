@@ -13,7 +13,11 @@ const loadHealth = (_key: string, signal: AbortSignal) => api.health(signal);
 const TONES = {
   ok: { dot: "bg-positive shadow-positive", label: "En línea", detail: "API en línea" },
   degraded: { dot: "bg-mark shadow-mark", label: "Parcial", detail: "API sin base de datos o sin algún modelo" },
-  offline: { dot: "bg-error shadow-error", label: "Sin conexión", detail: "No hay conexión con la API" },
+  offline: {
+    dot: "bg-mark shadow-mark",
+    label: "Local",
+    detail: "Sin API: las predicciones usan los modelos copiados en frontend/models",
+  },
 } as const;
 
 /** Re-checks when the tab becomes visible again, so starting the backend is picked up without reloading. */

@@ -1,6 +1,6 @@
 # L.I.N.E.A. — Web UI
 
-Next.js app for the three regression exercises. The API must be running on port 8000 (see the repo [README](../README.md)).
+Next.js app for the three regression exercises. Con la API en el puerto 8000 usa el backend; si no hay conexión, predice con los modelos de `models/` (ver el repo [README](../README.md)).
 
 ## Install (pnpm, recomendado)
 
@@ -12,6 +12,8 @@ pnpm dev
 ```
 
 Open http://localhost:3000.
+
+Si la API en el puerto 8000 no responde, la interfaz calcula con los modelos copiados en `models/` (`inference.json` es la recta extraída de cada `.joblib`). El historial sigue dependiendo de la API. Para refrescar esa copia después de reentrenar: `python scripts/export_frontend_models.py` desde la raíz del repo.
 
 ## Alternativa con npm
 

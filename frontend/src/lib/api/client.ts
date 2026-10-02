@@ -1,3 +1,5 @@
+import { localCatalog, localMetadata, localPredict } from "@/lib/local-models";
+
 import type {
   CatalogItem,
   Health,
@@ -59,6 +61,13 @@ async function request<T>(path: string, init: RequestInit = {}): Promise<T> {
     });
   } catch (error) {
     if (init.signal?.aborted) throw error;
+    if (path !== "/health") {
+      try {
+        return fromPackagedModels<T>(path, init);
+      } catch (localError) {
+        if (localError instanceof ApiError) throw localError;
+      }
+    }
     throw toApiError(error);
   }
 
@@ -67,6 +76,28 @@ async function request<T>(path: string, init: RequestInit = {}): Promise<T> {
     throw new ApiError(detailMessage(body, response.status), response.status);
   }
   return (await response.json()) as T;
+}
+
+const MODEL_NAME = /^(dollar|glucose|energy)$/;
+
+/** When the API cannot be reached, answer from frontend/models (the copied .joblib, as a linear form). */
+function fromPackagedModels<T>(path: string, init: RequestInit): T {
+  if (path === "/models") return localCatalog() as T;
+
+  const metadata = /^\/models\/(dollar|glucose|energy)\/metadata$/.exec(path);
+  if (metadata && MODEL_NAME.test(metadata[1])) return localMetadata(metadata[1] as ModelName) as T;
+
+  const predict = /^\/predict\/(dollar|glucose|energy)$/.exec(path);
+  if (predict && init.method === "POST" && MODEL_NAME.test(predict[1])) {
+    const inputs = JSON.parse(String(init.body)) as Record<string, number>;
+    return localPredict(predict[1] as ModelName, inputs) as T;
+  }
+
+  if (path.startsWith("/predictions/history")) {
+    throw new ApiError("El historial solo está disponible cuando la API responde.", 503);
+  }
+
+  throw new ApiError(`No hay conexión con la API en ${API_BASE_URL}.`, 0);
 }
 
 const metadataCache = new Map<ModelName, Promise<ModelMetadata>>();
